@@ -177,7 +177,7 @@ void matrix_scan_user(void) {
             unregister_code(KC_LSFT);
         }
 
-        SEQ_TWO_KEYS(KC_L, KC_E) {
+        SEQ_TWO_KEYS(KC_O, KC_P) {
             STOP_COMPOSING();
             register_code(KC_LSFT);
             register_code(KC_9);
@@ -185,7 +185,7 @@ void matrix_scan_user(void) {
             unregister_code(KC_LSFT);
         }
 
-        SEQ_TWO_KEYS(KC_R, KC_I) {
+        SEQ_TWO_KEYS(KC_C, KC_L) {
             STOP_COMPOSING();
             register_code(KC_LSFT);
             register_code(KC_0);
@@ -235,13 +235,13 @@ void matrix_scan_user(void) {
             unregister_code(KC_LSFT);
         }
 
-        SEQ_TWO_KEYS(KC_L, KC_S) {
+        SEQ_TWO_KEYS(KC_O, KC_S) {
             STOP_COMPOSING();
             register_code(KC_LBRC);
             unregister_code(KC_LBRC);
         }
 
-        SEQ_TWO_KEYS(KC_L, KC_C) {
+        SEQ_TWO_KEYS(KC_O, KC_C) {
             STOP_COMPOSING();
             register_code(KC_LSFT);
             register_code(KC_LBRC);
@@ -249,13 +249,13 @@ void matrix_scan_user(void) {
             unregister_code(KC_LSFT);
         }
 
-        SEQ_TWO_KEYS(KC_R, KC_S) {
+        SEQ_TWO_KEYS(KC_C, KC_S) {
             STOP_COMPOSING();
             register_code(KC_RBRC);
             unregister_code(KC_RBRC);
         }
 
-        SEQ_TWO_KEYS(KC_R, KC_C) {
+        SEQ_TWO_KEYS(KC_C, KC_C) {
             STOP_COMPOSING();
             register_code(KC_LSFT);
             register_code(KC_RBRC);
