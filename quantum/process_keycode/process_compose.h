@@ -19,5 +19,6 @@ void compose_end(void);
 
 #define COMPOSE_EXTERNS() extern bool composing; extern uint16_t compose_time; extern uint16_t compose_sequence[5]; extern uint8_t compose_sequence_size
 #define COMPOSE_DICTIONARY() if (composing)
+#define STOP_COMPOSING() composing = false; compose_end()
 
 #endif

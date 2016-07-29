@@ -37,14 +37,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   K  |   M  |   ,  |   .  |   /  |Shift |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Func | GUI  | Alt  | Ctrl | Symb |Enter |Space | Move | GUI  | Alt  | Ctrl |Caps  |
+ * | Func | GUI  | Alt  | Ctrl | Symb | Comp |Space | Move | GUI  | Alt  | Ctrl |Caps  |
  * `-----------------------------------------------------------------------------------'
  */
 [_BASE] = {
   {KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_MINS},
   {KC_BSPC, KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT},
   {KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT},
-  {FUNC,    KC_LGUI, KC_LALT, KC_LCTL, SYMB,    KC_ENT,  KC_SPC,  MOVE,    KC_RGUI, KC_RALT, KC_RCTL, KC_CAPS}
+  {FUNC,    KC_LGUI, KC_LALT, KC_LCTL, SYMB,    KC_COMP, KC_SPC,  MOVE,    KC_RGUI, KC_RALT, KC_RCTL, KC_CAPS}
 },
 
 /* MOVE
@@ -102,6 +102,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 }
 
 };
+
+COMPOSE_EXTERNS();
+
+void matrix_scan_user(void) {
+    COMPOSE_DICTIONARY() {
+        SEQ_ONE_KEY(KC_SPC) {
+            STOP_COMPOSING();
+            register_code(KC_ENT);
+            unregister_code(KC_ENT);
+        }
+
+        SEQ_TWO_KEYS(KC_A, KC_T) {
+            STOP_COMPOSING();
+            register_code(KC_LSFT);
+            register_code(KC_2);
+            unregister_code(KC_1);
+            unregister_code(KC_LSFT);
+        }
+
+        if (timer_elapsed(compose_time) > COMPOSE_TIMEOUT) {
+            STOP_COMPOSING();
+        }
+    }
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
