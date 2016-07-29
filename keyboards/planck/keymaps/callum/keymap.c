@@ -113,11 +113,153 @@ void matrix_scan_user(void) {
             unregister_code(KC_ENT);
         }
 
+        SEQ_TWO_KEYS(KC_E, KC_X) {
+            STOP_COMPOSING();
+            register_code(KC_LSFT);
+            register_code(KC_1);
+            unregister_code(KC_1);
+            unregister_code(KC_LSFT);
+        }
+
         SEQ_TWO_KEYS(KC_A, KC_T) {
             STOP_COMPOSING();
             register_code(KC_LSFT);
             register_code(KC_2);
             unregister_code(KC_2);
+            unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_H, KC_A) {
+            STOP_COMPOSING();
+            register_code(KC_LSFT);
+            register_code(KC_3);
+            unregister_code(KC_3);
+            unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_D, KC_O) {
+            STOP_COMPOSING();
+            register_code(KC_LSFT);
+            register_code(KC_4);
+            unregister_code(KC_4);
+            unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_P, KC_E) {
+            STOP_COMPOSING();
+            register_code(KC_LSFT);
+            register_code(KC_5);
+            unregister_code(KC_5);
+            unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_C, KC_A) {
+            STOP_COMPOSING();
+            register_code(KC_LSFT);
+            register_code(KC_6);
+            unregister_code(KC_6);
+            unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_A, KC_M) {
+            STOP_COMPOSING();
+            register_code(KC_LSFT);
+            register_code(KC_7);
+            unregister_code(KC_7);
+            unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_A, KC_S) {
+            STOP_COMPOSING();
+            register_code(KC_LSFT);
+            register_code(KC_8);
+            unregister_code(KC_8);
+            unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_L, KC_E) {
+            STOP_COMPOSING();
+            register_code(KC_LSFT);
+            register_code(KC_9);
+            unregister_code(KC_9);
+            unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_R, KC_I) {
+            STOP_COMPOSING();
+            register_code(KC_LSFT);
+            register_code(KC_0);
+            unregister_code(KC_0);
+            unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_G, KC_R) {
+            STOP_COMPOSING();
+            register_code(KC_GRV);
+            unregister_code(KC_GRV);
+        }
+
+        SEQ_TWO_KEYS(KC_T, KC_I) {
+            STOP_COMPOSING();
+            register_code(KC_LSFT);
+            register_code(KC_GRV);
+            unregister_code(KC_GRV);
+            unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_B, KC_S) {
+            STOP_COMPOSING();
+            register_code(KC_BSLS);
+            unregister_code(KC_BSLS);
+        }
+
+        SEQ_TWO_KEYS(KC_P, KC_I) {
+            STOP_COMPOSING();
+            register_code(KC_LSFT);
+            register_code(KC_BSLS);
+            unregister_code(KC_BSLS);
+            unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_E, KC_Q) {
+            STOP_COMPOSING();
+            register_code(KC_EQL);
+            unregister_code(KC_EQL);
+        }
+
+        SEQ_TWO_KEYS(KC_P, KC_L) {
+            STOP_COMPOSING();
+            register_code(KC_LSFT);
+            register_code(KC_EQL);
+            unregister_code(KC_EQL);
+            unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_L, KC_S) {
+            STOP_COMPOSING();
+            register_code(KC_LBRC);
+            unregister_code(KC_LBRC);
+        }
+
+        SEQ_TWO_KEYS(KC_L, KC_C) {
+            STOP_COMPOSING();
+            register_code(KC_LSFT);
+            register_code(KC_LBRC);
+            unregister_code(KC_LBRC);
+            unregister_code(KC_LSFT);
+        }
+
+        SEQ_TWO_KEYS(KC_R, KC_S) {
+            STOP_COMPOSING();
+            register_code(KC_RBRC);
+            unregister_code(KC_RBRC);
+        }
+
+        SEQ_TWO_KEYS(KC_R, KC_C) {
+            STOP_COMPOSING();
+            register_code(KC_LSFT);
+            register_code(KC_RBRC);
+            unregister_code(KC_RBRC);
             unregister_code(KC_LSFT);
         }
 
