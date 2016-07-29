@@ -117,11 +117,6 @@ enum quantum_keycodes {
     KC_LEAD,
 #endif
 
-    // Compose key
-#ifndef DISABLE_COMPOSE
-    KC_COMP,
-#endif
-
     // Audio on/off/toggle
     AU_ON,
     AU_OFF,

@@ -8,6 +8,7 @@ void leader_end(void) {}
 
 // Leader key stuff
 bool leading = false;
+bool partial_match = false;
 uint16_t leader_time = 0;
 
 uint16_t leader_sequence[5] = {0, 0, 0, 0, 0};

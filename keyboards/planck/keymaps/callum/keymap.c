@@ -13,13 +13,13 @@ extern keymap_config_t keymap_config;
 // entirely and just use numbers.
 #define _BASE 0
 #define _MOVE 1
-#define _NUMS 2
+#define _SYMB 2
 #define _FUNC 3
 
 enum planck_keycodes {
   BASE = SAFE_RANGE,
   MOVE,
-  NUMS,
+  SYMB,
   FUNC
 };
 
@@ -37,14 +37,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   K  |   M  |   ,  |   .  |   /  |Shift |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Func | GUI  | Alt  | Ctrl | Nums | Comp |Space | Move | GUI  | Alt  | Ctrl |Caps  |
+ * | Func | GUI  | Alt  | Ctrl | Nums | Lead |Space | Move | GUI  | Alt  | Ctrl |Caps  |
  * `-----------------------------------------------------------------------------------'
  */
 [_BASE] = {
   {KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_MINS},
   {KC_BSPC, KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT},
   {KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT},
-  {FUNC,    KC_LGUI, KC_LALT, KC_LCTL, NUMS,    KC_COMP, KC_SPC,  MOVE,    KC_RGUI, KC_RALT, KC_RCTL, KC_CAPS}
+  {FUNC,    KC_LGUI, KC_LALT, KC_LCTL, SYMB,    KC_LEAD, KC_SPC,  MOVE,    KC_RGUI, KC_RALT, KC_RCTL, KC_CAPS}
 },
 
 /* MOVE
@@ -65,20 +65,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______}
 },
 
-/* NUMS
+/* SYMB
  * ,-----------------------------------------------------------------------------------.
- * |  Esc |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Esc  |
+ * |  Esc |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Esc  |
  * |-----------------------------------------------------------------------------------.
- * |  Del |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Del  |
+ * |  Del |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |   ~  |   |  |   +  |   [  |   {  |  }   |   ]  |   =  |   \  |   `  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_NUMS] = {
-  {KC_ESC,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_ESC },
-  {KC_DEL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL },
+[_SYMB] = {
+  {KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_ESC },
+  {KC_DEL,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL },
   {_______, KC_TILD, KC_PIPE, KC_PLUS, KC_LBRC, KC_LCBR, KC_RCBR, KC_RBRC, KC_EQL,  KC_BSLS, KC_GRV,  _______},
   {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______}
 },
@@ -103,176 +103,61 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-COMPOSE_EXTERNS();
+LEADER_EXTERNS();
 
 void matrix_scan_user(void) {
-    COMPOSE_DICTIONARY() {
-        SEQ_ONE_KEY(KC_SPC) {
-            STOP_COMPOSING();
-            register_code(KC_ENT);
-            unregister_code(KC_ENT);
+    LEADER_DICTIONARY() {
+        partial_match = false;
+
+        REGISTER_SEQUENCES() {
+            REGISTER_ONE_KEY(KC_SPC);
+            REGISTER_TWO_KEYS(KC_E, KC_X);
+            REGISTER_TWO_KEYS(KC_A, KC_A);
+            REGISTER_THREE_KEYS(KC_A, KC_A, KC_A);
         }
 
-        SEQ_TWO_KEYS(KC_E, KC_X) {
-            STOP_COMPOSING();
-            register_code(KC_LSFT);
-            register_code(KC_1);
-            unregister_code(KC_1);
-            unregister_code(KC_LSFT);
+        DESCRIBE_SEQUENCE_BEHAVIOUR() {
+            DESCRIBE_ONE_KEY(KC_SPC) {
+                STOP_LEADING();
+                register_code(KC_ENT);
+                unregister_code(KC_ENT);
+            }
+
+            DESCRIBE_TWO_KEYS(KC_E, KC_X) {
+                STOP_LEADING();
+                register_code(KC_LSFT);
+                register_code(KC_1);
+                unregister_code(KC_1);
+                unregister_code(KC_LSFT);
+            }
+
+            DESCRIBE_TWO_KEYS(KC_A, KC_A) {
+                STOP_LEADING();
+                register_code(KC_T);
+                unregister_code(KC_T);
+                register_code(KC_W);
+                unregister_code(KC_W);
+                register_code(KC_O);
+                unregister_code(KC_O);
+            }
+
+            DESCRIBE_THREE_KEYS(KC_A, KC_A, KC_A) {
+                STOP_LEADING();
+                register_code(KC_T);
+                unregister_code(KC_T);
+                register_code(KC_H);
+                unregister_code(KC_H);
+                register_code(KC_R);
+                unregister_code(KC_R);
+                register_code(KC_E);
+                unregister_code(KC_E);
+                register_code(KC_E);
+                unregister_code(KC_E);
+            }
         }
 
-        SEQ_TWO_KEYS(KC_A, KC_T) {
-            STOP_COMPOSING();
-            register_code(KC_LSFT);
-            register_code(KC_2);
-            unregister_code(KC_2);
-            unregister_code(KC_LSFT);
-        }
-
-        SEQ_TWO_KEYS(KC_H, KC_A) {
-            STOP_COMPOSING();
-            register_code(KC_LSFT);
-            register_code(KC_3);
-            unregister_code(KC_3);
-            unregister_code(KC_LSFT);
-        }
-
-        SEQ_TWO_KEYS(KC_D, KC_O) {
-            STOP_COMPOSING();
-            register_code(KC_LSFT);
-            register_code(KC_4);
-            unregister_code(KC_4);
-            unregister_code(KC_LSFT);
-        }
-
-        SEQ_TWO_KEYS(KC_P, KC_E) {
-            STOP_COMPOSING();
-            register_code(KC_LSFT);
-            register_code(KC_5);
-            unregister_code(KC_5);
-            unregister_code(KC_LSFT);
-        }
-
-        SEQ_TWO_KEYS(KC_C, KC_A) {
-            STOP_COMPOSING();
-            register_code(KC_LSFT);
-            register_code(KC_6);
-            unregister_code(KC_6);
-            unregister_code(KC_LSFT);
-        }
-
-        SEQ_TWO_KEYS(KC_A, KC_M) {
-            STOP_COMPOSING();
-            register_code(KC_LSFT);
-            register_code(KC_7);
-            unregister_code(KC_7);
-            unregister_code(KC_LSFT);
-        }
-
-        SEQ_TWO_KEYS(KC_A, KC_S) {
-            STOP_COMPOSING();
-            register_code(KC_LSFT);
-            register_code(KC_8);
-            unregister_code(KC_8);
-            unregister_code(KC_LSFT);
-        }
-
-        SEQ_TWO_KEYS(KC_O, KC_P) {
-            STOP_COMPOSING();
-            register_code(KC_LSFT);
-            register_code(KC_9);
-            unregister_code(KC_9);
-            unregister_code(KC_LSFT);
-        }
-
-        SEQ_TWO_KEYS(KC_C, KC_L) {
-            STOP_COMPOSING();
-            register_code(KC_LSFT);
-            register_code(KC_0);
-            unregister_code(KC_0);
-            unregister_code(KC_LSFT);
-        }
-
-        SEQ_TWO_KEYS(KC_G, KC_R) {
-            STOP_COMPOSING();
-            register_code(KC_GRV);
-            unregister_code(KC_GRV);
-        }
-
-        SEQ_TWO_KEYS(KC_T, KC_I) {
-            STOP_COMPOSING();
-            register_code(KC_LSFT);
-            register_code(KC_GRV);
-            unregister_code(KC_GRV);
-            unregister_code(KC_LSFT);
-        }
-
-        SEQ_TWO_KEYS(KC_B, KC_S) {
-            STOP_COMPOSING();
-            register_code(KC_BSLS);
-            unregister_code(KC_BSLS);
-        }
-
-        SEQ_TWO_KEYS(KC_P, KC_I) {
-            STOP_COMPOSING();
-            register_code(KC_LSFT);
-            register_code(KC_BSLS);
-            unregister_code(KC_BSLS);
-            unregister_code(KC_LSFT);
-        }
-
-        SEQ_TWO_KEYS(KC_E, KC_Q) {
-            STOP_COMPOSING();
-            register_code(KC_EQL);
-            unregister_code(KC_EQL);
-        }
-
-        SEQ_TWO_KEYS(KC_P, KC_L) {
-            STOP_COMPOSING();
-            register_code(KC_LSFT);
-            register_code(KC_EQL);
-            unregister_code(KC_EQL);
-            unregister_code(KC_LSFT);
-        }
-
-        SEQ_TWO_KEYS(KC_O, KC_S) {
-            STOP_COMPOSING();
-            register_code(KC_LBRC);
-            unregister_code(KC_LBRC);
-        }
-
-        SEQ_TWO_KEYS(KC_O, KC_C) {
-            STOP_COMPOSING();
-            register_code(KC_LSFT);
-            register_code(KC_LBRC);
-            unregister_code(KC_LBRC);
-            unregister_code(KC_LSFT);
-        }
-
-        SEQ_TWO_KEYS(KC_C, KC_S) {
-            STOP_COMPOSING();
-            register_code(KC_RBRC);
-            unregister_code(KC_RBRC);
-        }
-
-        SEQ_TWO_KEYS(KC_C, KC_C) {
-            STOP_COMPOSING();
-            register_code(KC_LSFT);
-            register_code(KC_RBRC);
-            unregister_code(KC_RBRC);
-            unregister_code(KC_LSFT);
-        }
-
-        SEQ_TWO_KEYS(KC_P, KC_O) {
-            STOP_COMPOSING();
-            register_code(KC_LALT);
-            register_code(KC_3);
-            unregister_code(KC_3);
-            unregister_code(KC_LALT);
-        }
-
-        if (timer_elapsed(compose_time) > COMPOSE_TIMEOUT) {
-            STOP_COMPOSING();
+        if (timer_elapsed(leader_time) > LEADER_TIMEOUT) {
+            STOP_LEADING();
         }
     }
 }
@@ -282,20 +167,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case MOVE:
       if (record->event.pressed) {
         layer_on(_MOVE);
-        update_tri_layer(_MOVE, _NUMS, _FUNC);
+        update_tri_layer(_MOVE, _SYMB, _FUNC);
       } else {
         layer_off(_MOVE);
-        update_tri_layer(_MOVE, _NUMS, _FUNC);
+        update_tri_layer(_MOVE, _SYMB, _FUNC);
       }
       return false;
       break;
-    case NUMS:
+    case SYMB:
       if (record->event.pressed) {
-        layer_on(_NUMS);
-        update_tri_layer(_MOVE, _NUMS, _FUNC);
+        layer_on(_SYMB);
+        update_tri_layer(_MOVE, _SYMB, _FUNC);
       } else {
-        layer_off(_NUMS);
-        update_tri_layer(_MOVE, _NUMS, _FUNC);
+        layer_off(_SYMB);
+        update_tri_layer(_MOVE, _SYMB, _FUNC);
       }
       return false;
       break;
