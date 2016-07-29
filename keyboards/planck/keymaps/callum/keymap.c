@@ -117,7 +117,7 @@ void matrix_scan_user(void) {
             STOP_COMPOSING();
             register_code(KC_LSFT);
             register_code(KC_2);
-            unregister_code(KC_1);
+            unregister_code(KC_2);
             unregister_code(KC_LSFT);
         }
 
