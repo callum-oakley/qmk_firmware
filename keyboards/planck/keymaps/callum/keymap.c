@@ -263,6 +263,14 @@ void matrix_scan_user(void) {
             unregister_code(KC_LSFT);
         }
 
+        SEQ_TWO_KEYS(KC_P, KC_O) {
+            STOP_COMPOSING();
+            register_code(KC_LALT);
+            register_code(KC_3);
+            unregister_code(KC_3);
+            unregister_code(KC_LALT);
+        }
+
         if (timer_elapsed(compose_time) > COMPOSE_TIMEOUT) {
             STOP_COMPOSING();
         }
