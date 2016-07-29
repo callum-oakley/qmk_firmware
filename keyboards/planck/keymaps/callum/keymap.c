@@ -13,13 +13,13 @@ extern keymap_config_t keymap_config;
 // entirely and just use numbers.
 #define _BASE 0
 #define _MOVE 1
-#define _SYMB 2
+#define _NUMS 2
 #define _FUNC 3
 
 enum planck_keycodes {
   BASE = SAFE_RANGE,
   MOVE,
-  SYMB,
+  NUMS,
   FUNC
 };
 
@@ -37,14 +37,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   K  |   M  |   ,  |   .  |   /  |Shift |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Func | GUI  | Alt  | Ctrl | Symb | Comp |Space | Move | GUI  | Alt  | Ctrl |Caps  |
+ * | Func | GUI  | Alt  | Ctrl | Nums | Comp |Space | Move | GUI  | Alt  | Ctrl |Caps  |
  * `-----------------------------------------------------------------------------------'
  */
 [_BASE] = {
   {KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_MINS},
   {KC_BSPC, KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT},
   {KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT},
-  {FUNC,    KC_LGUI, KC_LALT, KC_LCTL, SYMB,    KC_COMP, KC_SPC,  MOVE,    KC_RGUI, KC_RALT, KC_RCTL, KC_CAPS}
+  {FUNC,    KC_LGUI, KC_LALT, KC_LCTL, NUMS,    KC_COMP, KC_SPC,  MOVE,    KC_RGUI, KC_RALT, KC_RCTL, KC_CAPS}
 },
 
 /* MOVE
@@ -65,20 +65,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______}
 },
 
-/* SYMB
+/* NUMS
  * ,-----------------------------------------------------------------------------------.
- * |  Esc |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Esc  |
+ * |  Esc |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Esc  |
  * |-----------------------------------------------------------------------------------.
- * |  Del |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Del  |
+ * |  Del |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |   ~  |   |  |   +  |   [  |   {  |  }   |   ]  |   =  |   \  |   `  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_SYMB] = {
-  {KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_ESC },
-  {KC_DEL,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL },
+[_NUMS] = {
+  {KC_ESC,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_ESC },
+  {KC_DEL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL },
   {_______, KC_TILD, KC_PIPE, KC_PLUS, KC_LBRC, KC_LCBR, KC_RCBR, KC_RBRC, KC_EQL,  KC_BSLS, KC_GRV,  _______},
   {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______}
 },
@@ -274,20 +274,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case MOVE:
       if (record->event.pressed) {
         layer_on(_MOVE);
-        update_tri_layer(_MOVE, _SYMB, _FUNC);
+        update_tri_layer(_MOVE, _NUMS, _FUNC);
       } else {
         layer_off(_MOVE);
-        update_tri_layer(_MOVE, _SYMB, _FUNC);
+        update_tri_layer(_MOVE, _NUMS, _FUNC);
       }
       return false;
       break;
-    case SYMB:
+    case NUMS:
       if (record->event.pressed) {
-        layer_on(_SYMB);
-        update_tri_layer(_MOVE, _SYMB, _FUNC);
+        layer_on(_NUMS);
+        update_tri_layer(_MOVE, _NUMS, _FUNC);
       } else {
-        layer_off(_SYMB);
-        update_tri_layer(_MOVE, _SYMB, _FUNC);
+        layer_off(_NUMS);
+        update_tri_layer(_MOVE, _NUMS, _FUNC);
       }
       return false;
       break;
