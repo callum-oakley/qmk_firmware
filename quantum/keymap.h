@@ -117,6 +117,11 @@ enum quantum_keycodes {
     KC_LEAD,
 #endif
 
+    // Compose key
+#ifndef DISABLE_COMPOSE
+    KC_COMP,
+#endif
+
     // Audio on/off/toggle
     AU_ON,
     AU_OFF,
@@ -156,7 +161,7 @@ enum quantum_keycodes {
     BL_INC,
     BL_TOGG,
     BL_STEP,
-	
+
 	// RGB functionality
 	RGB_TOG,
 	RGB_MOD,

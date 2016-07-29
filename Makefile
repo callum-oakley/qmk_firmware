@@ -88,7 +88,7 @@ ifneq ("$(wildcard $(KEYBOARD_PATH)/$(KEYBOARD).c)","")
 			include $(KEYBOARD_PATH)/Makefile
 		endif
 	endif
-else 
+else
 $(error "$(KEYBOARD_PATH)/$(KEYBOARD).c" does not exist)
 endif
 
@@ -102,7 +102,7 @@ ifdef SUBPROJECT
 		OPT_DEFS += -DSUBPROJECT_$(SUBPROJECT)
 		SUBPROJECT_FILE = keyboards/$(KEYBOARD)/$(SUBPROJECT)/$(SUBPROJECT).c
 		-include $(SUBPROJECT_PATH)/Makefile
-	else 
+	else
 $(error "$(SUBPROJECT_PATH)/$(SUBPROJECT).c" does not exist)
 	endif
 endif
@@ -120,7 +120,7 @@ KEYMAP_PATH = $(KEYBOARD_PATH)/keymaps/$(KEYMAP)
 ifneq ("$(wildcard $(KEYMAP_PATH)/keymap.c)","")
 	KEYMAP_FILE = keyboards/$(KEYBOARD)/keymaps/$(KEYMAP)/keymap.c
 	-include $(KEYMAP_PATH)/Makefile
-else 
+else
 	ifeq ("$(wildcard $(SUBPROJECT_PATH)/keymaps/$(KEYMAP)/keymap.c)","")
 $(error "$(KEYMAP_PATH)/keymap.c" does not exist)
 	else
@@ -161,7 +161,8 @@ SRC += $(KEYBOARD_FILE) \
 	$(QUANTUM_DIR)/quantum.c \
 	$(QUANTUM_DIR)/keymap_common.c \
 	$(QUANTUM_DIR)/keycode_config.c \
-	$(QUANTUM_DIR)/process_keycode/process_leader.c
+	$(QUANTUM_DIR)/process_keycode/process_leader.c \
+	$(QUANTUM_DIR)/process_keycode/process_compose.c
 
 ifdef SUBPROJECT
 	SRC += $(SUBPROJECT_FILE)

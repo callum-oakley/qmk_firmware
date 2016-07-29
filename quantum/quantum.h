@@ -47,6 +47,10 @@ extern uint32_t default_layer_state;
 	#include "process_leader.h"
 #endif
 
+#ifndef DISABLE_COMPOSE
+    #include "process_compose.h"
+#endif
+
 #define DISABLE_CHORDING
 #ifndef DISABLE_CHORDING
 	#include "process_chording.h"
