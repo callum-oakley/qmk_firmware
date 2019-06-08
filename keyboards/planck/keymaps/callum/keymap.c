@@ -32,9 +32,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
      * |Bksp |  A  |  R  |  S  |  T  |  D  |  H  |  N  |  E  |  I  |  O  |  '  |
      * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-     * |Shift|  Z  |  X  |  C  |  V  |  B  |  K  |  M  |  ,  |  .  |  /  |Shift|
+     * |Ctrl |  Z  |  X  |  C  |  V  |  B  |  K  |  M  |  ,  |  .  |  /  | Alt |
      * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-     * |Func |Ctrl | Alt |Super|Symb |Enter|Space|Move |Super| Alt |Ctrl |Func |
+     * |     |     |     |Super|Symb |Shift|Space|Move |Super|     |     |     |
      * `-----------------------------------------------------------------------'
      */
     [_COLEMAK] = LAYOUT_planck_grid(
@@ -46,13 +46,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_T,         KC_D,         KC_H,         KC_N,
         KC_E,         KC_I,         KC_O,         KC_QUOT,
 
-        KC_LSFT,      KC_Z,         KC_X,         KC_C,
+        KC_LCTL,      KC_Z,         KC_X,         KC_C,
         KC_V,         KC_B,         KC_K,         KC_M,
-        KC_COMM,      KC_DOT,       KC_SLSH,      KC_RSFT,
+        KC_COMM,      KC_DOT,       KC_SLSH,      KC_LALT,
 
-        FUNC,         KC_LCTL,      KC_LALT,      KC_LGUI,
-        SYMB,         KC_ENT,       KC_SPC,       MOVE,
-        KC_RGUI,      KC_RALT,      KC_RCTL,      FUNC
+        XXXXXXX,      XXXXXXX,      XXXXXXX,      KC_LGUI,
+        SYMB,         KC_LSFT,      KC_SPC,       MOVE,
+        KC_RGUI,      XXXXXXX,      XXXXXXX,      XXXXXXX
     ),
 
     /* QWERTY
@@ -61,9 +61,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
      * |Bksp |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |  ;  |  '  |
      * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-     * |Shift|  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  |  /  |Shift|
+     * |Ctrl |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  |  /  | Alt |
      * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-     * |Func |Ctrl | Alt |Super|Symb |Enter|Space|Move |Super| Alt |Ctrl |Func |
+     * |     |     |     |Super|Symb |Shift|Space|Move |Super|     |     |     |
      * `-----------------------------------------------------------------------'
      */
     [_QWERTY] = LAYOUT_planck_grid(
@@ -75,13 +75,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_F,         KC_G,         KC_H,         KC_J,
         KC_K,         KC_L,         KC_SCLN,      KC_QUOT,
 
-        KC_LSFT,      KC_Z,         KC_X,         KC_C,
+        KC_LCTL,      KC_Z,         KC_X,         KC_C,
         KC_V,         KC_B,         KC_N,         KC_M,
-        KC_COMM,      KC_DOT,       KC_SLSH,      KC_RSFT,
+        KC_COMM,      KC_DOT,       KC_SLSH,      KC_LALT,
 
-        FUNC,         KC_LCTL,      KC_LALT,      KC_LGUI,
-        SYMB,         KC_ENT,       KC_SPC,       MOVE,
-        KC_RGUI,      KC_RALT,      KC_RCTL,      FUNC
+        XXXXXXX,      XXXXXXX,      XXXXXXX,      KC_LGUI,
+        SYMB,         KC_LSFT,      KC_SPC,       MOVE,
+        KC_RGUI,      XXXXXXX,      XXXXXXX,      XXXXXXX
     ),
 
     /* SYMB
@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
      * |     |  ~  |  `  |  +  |  =  |  |  |  \  |  [  |  ]  |  {  |  }  |     |
      * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-     * |     |     |     |     |     |     |     |     |     |     |     |     |
+     * |     |     |     |     |     |     |Enter|     |     |     |     |     |
      * `-----------------------------------------------------------------------'
      */
     [_SYMB] = LAYOUT_planck_grid(
@@ -109,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_RBRC,      KC_LCBR,      KC_RCBR,      _______,
 
         _______,      _______,      _______,      _______,
-        _______,      _______,      _______,      _______,
+        _______,      _______,      KC_ENT,       _______,
         _______,      _______,      _______,      _______
     ),
 
@@ -117,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------------------------------------.
      * |     |     |     |     |     |     |CtrUp|Home | Up  | End |Caps |Mouse|
      * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-     * |     |     |     |     |     |     |CtrL |Left |Down |Right|CtrR |     |
+     * |     |     |     |     |     |     |CtrL |Left |Down |Right|CtrR |Func |
      * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
      * |     |     |     |     |     |     |CtrDn|PgDn |PgUp |TabL |TabR |     |
      * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
@@ -131,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         AC(KC_G),     AC(KC_H),     AC(KC_I),     AC(KC_J),
         AC(KC_K),     AC(KC_L),     C(KC_LEFT),   KC_LEFT,
-        KC_DOWN,      KC_RGHT,      C(KC_RIGHT),  XXXXXXX,
+        KC_DOWN,      KC_RGHT,      C(KC_RIGHT),  FUNC,
 
         _______,      AC(KC_M),     AC(KC_N),     AC(KC_O),
         AC(KC_P),     AC(KC_Q),     C(KC_DOWN),   KC_PGDN,
@@ -148,9 +148,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
      * |Power| F11 | F12 | F13 | F14 | F15 | F16 | F17 | F18 | F19 | F20 |VolDn|
      * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-     * |     |     |     |     |     |     |     |     |     |Clmak|Qwrty|     |
+     * |     |Clmak|Qwrty|     |     |     |     |Prev |Play |Next |Mute |     |
      * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-     * |     |     |     |     |Prev |Mute |Play |Next |     |     |     |     |
+     * |     |     |     |     |     |     | Ent |     |     |     |     |     |
      * `-----------------------------------------------------------------------'
      */
     [_FUNC] = LAYOUT_planck_grid(
@@ -162,12 +162,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_F14,       KC_F15,       KC_F16,       KC_F17,
         KC_F18,       KC_F19,       KC_F20,       KC_VOLD,
 
-        _______,      XXXXXXX,      KC_HOME,      SC(KC_TAB),
-        C(KC_TAB),    KC_END,       XXXXXXX,      XXXXXXX,
-        XXXXXXX,      COLEMAK,      QWERTY,       _______,
+        _______,      COLEMAK,      QWERTY,       _______,
+        _______,      _______,      _______,       KC_MPRV,
+        KC_MPLY,      KC_MNXT,      KC_MUTE,      _______,
 
         _______,      _______,      _______,      _______,
-        KC_MPRV,      KC_MUTE,      KC_MPLY,      KC_MNXT,
+        _______,      _______,      KC_ENT,       _______,
         _______,      _______,      _______,      _______
     ),
 
@@ -236,6 +236,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case SYMB:
             if (record->event.pressed) {
+                layer_off(_FUNC);
                 layer_off(_MOUSE);
                 layer_on(_SYMB);
             } else {
@@ -244,6 +245,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case MOVE:
             if (record->event.pressed) {
+                layer_off(_FUNC);
                 layer_off(_MOUSE);
                 layer_on(_MOVE);
             } else {
@@ -254,12 +256,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 layer_off(_MOUSE);
                 layer_on(_FUNC);
-            } else {
-                layer_off(_FUNC);
             }
             return false;
         case MOUSE:
             if (record->event.pressed) {
+                layer_off(_FUNC);
                 layer_on(_MOUSE);
             }
             return false;
